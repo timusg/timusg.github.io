@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tdd | Sumit Gupta's Blog]]></title>
+  <link href="http://www.timusg.com/blog/categories/tdd/atom.xml" rel="self"/>
+  <link href="http://www.timusg.com/"/>
+  <updated>2013-10-20T00:34:41+05:30</updated>
+  <id>http://www.timusg.com/</id>
+  <author>
+    <name><![CDATA[Sumit Gupta]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Testing chef cookbook with docker and test kitchen]]></title>
+    <link href="http://www.timusg.com/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/"/>
+    <updated>2013-10-15T17:44:00+05:30</updated>
+    <id>http://www.timusg.com/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/opscode/test-kitchen">Test Kitchen</a> is a framework for isolated integration testing of chef
+recipes.</p>
+
+<p>For testing a recipe it spawn a vm, execute tests and then destroys it.
+For local cookbook development and manual testing of changes
+<a href="http://www.vagrantup.com/">vagarnt</a> is definitely the first choice,
+but for developing cookbook with automated tests suits this VM based approach is very
+slow and as test kitchen destroys box with each run, testing feedback time become really important factor in development speed and is worthy candidate for
+optimisation.</p>
+
+<!--more-->
+
+
+<h2>Optimisation</h2>
+
+<p>Containers like openvz and lxc are faster to launch and are very lightweight as compared to virtual box and other VM based backends.</p>
+
+<p>As compared to open vz, lxc is available on the mainstream linux kernel but managing lxc container with scripts
+is not an easy task, there are two lxc baced framework available, <a href="https://github.com/fgrehm/vagrant-lxc">vagrant lxc</a>(vagrant lxc provider) and <a href="https://www.docker.io/">docker</a> (package and run application as container) which provides
+good abstraction layer over lxc.</p>
+
+<p>Test kitchen has a architecture for pluggable virualization backend and it support vagrant, ec2 and recently
+with <a href="https://github.com/portertech/kitchen-docker">kitchen-docker</a> plugin, docker can also used as driver.</p>
+
+<p>I am using following setup to use test kitchen with docker.</p>
+
+<h2>Setup</h2>
+
+<h3>Install docker</h3>
+
+<p><a href="https://www.docker.io/gettingstarted/">Install</a> it for supported
+platform or
+Install it with community cookbook with chef and berkself</p>
+
+<p><code>ruby Berksfile for install docker
+site :opscode
+metadata
+group :integration do
+cookbook 'docker'
+end
+</code></p>
+
+<h3>Install test-kitchen and docker driver</h3>
+
+<p>Can be installed with bundler by using following Gemfile file</p>
+
+<p>``` ruby Gemfile
+source 'https://rubygems.org'</p>
+
+<p>gem 'berkshelf', '~> 2.0'</p>
+
+<p>group :integration do
+  gem 'test-kitchen', '~> 1.0.0.beta'
+  gem 'kitchen-docker'
+end
+```</p>
+
+<h3>Test Cookbook</h3>
+
+<p>Download <a href="https://github.com/opscode-cookbooks/ntp.git">ntp</a> cookbook for testing, beacuse it also serve as a testing documentation reference</p>
+
+<h2>Execute Tests</h2>
+
+<p>Change .kitchen.yml file of ntp cookbook to use kitchen docker plugin</p>
+
+<h2>``` yml example .kitchen.yml</h2>
+
+<p>driver_plugin: docker
+driver_config:
+  require_chef_omnibus: true</p>
+
+<p>platforms:
+- name: centos
+  driver_config:</p>
+
+<pre><code>image: "centos"
+platform: "rhel"
+</code></pre>
+
+<p>  run_list:
+  - recipe[yum]</p>
+
+<p>suites:
+  - name: default</p>
+
+<pre><code>run_list:
+  - recipe[ntp::default]
+attributes:
+  ntp:
+    sync_clock: true
+    sync_hw_clock: true
+</code></pre>
+
+<ul>
+<li>name: undo
+run_list:
+
+<ul>
+<li>recipe[ntp::undo]
+```</li>
+</ul>
+</li>
+</ul>
+
+
+<p>And run kitchen to execute tests in docker container</p>
+
+<p><code>ruby
+bundle exec kitchen test
+</code></p>
+
+<h2>More optimisations</h2>
+
+<p>Test Kitchen downloads chef omnibus package every time while spawning
+a container, this step takes both time and bandwidth, this behaviour can
+be override by setting require_chef_omnibus flag, there are also few tricks to speed up this step.</p>
+
+<ul>
+<li>use local repository for chef omnibus and override chef_omnibus_url flag</li>
+<li>use lightweight gem like chef zero</li>
+<li>utilize docker cache with  provision_command command</li>
+<li>package omnibus with container and build image for testing</li>
+</ul>
+
+
+<p>New image can be easily created by using following
+docker file</p>
+
+<p><code>sh
+cat &lt;&lt; 'EOF' &gt; Dockerfile
+FROM centos
+RUN curl -L https://www.opscode.com/chef/install.sh | sudo bash
+EOF
+docker build -t  image_name .
+</code></p>
+
+<p>Set and image: image_name in .kitchen.yml
+file and execute tests more faster.</p>
+]]></content>
+  </entry>
+  
+</feed>
