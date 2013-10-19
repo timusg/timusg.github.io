@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Sumit Gupta</title>
+  <title>Sumit Gupta's Blog</title>
   <meta name="author" content="Sumit Gupta">
 
   
-  <meta name="description" content="Hoppr Platform Now with 7.6 m users hoppr platform is now handling around 600k checkins and 3m+ events per day. underline is a heavily distributed &hellip;">
+  <meta name="description" content="Test Kitchen is a framework for isolated integration testing of chef
+recipes. For testing a recipe it spawn a vm, execute tests and then destroys it &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,13 +19,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://timusg.github.com/timusg/">
+  <link rel="canonical" href="http://www.timusg.com/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Sumit Gupta" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Sumit Gupta's Blog" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -47,9 +48,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Sumit Gupta</a></h1>
+  <h1><a href="/">Sumit Gupta's Blog</a></h1>
   
-    <h2>lorem ipsum</h2>
+    <h2>code to production and every thing in between</h2>
   
 </hgroup>
 
@@ -61,7 +62,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:timusg.github.com/timusg" />
+    <input type="hidden" name="q" value="site:www.timusg.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -76,6 +77,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/">Testing Chef Cookbook With Docker and Test Kitchen</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-15T17:44:00+05:30" pubdate data-updated="true">Oct 15<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://github.com/opscode/test-kitchen">Test Kitchen</a> is a framework for isolated integration testing of chef
+recipes.</p>
+
+<p>For testing a recipe it spawn a vm, execute tests and then destroys it.
+For local cookbook development and manual testing of changes
+<a href="http://www.vagrantup.com/">vagarnt</a> is definitely the first choice,
+but for developing cookbook with automated tests suits this VM based approach is very
+slow and as test kitchen destroys box with each run, testing feedback time become really important factor in development speed and is worthy candidate for
+optimisation.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -129,88 +179,12 @@ it support zero downtime deployment and minimalistic service availability even i
 </ul>
 
 
-<h2>A big rewrite</h2>
-
-<p>it all start with a big rewrite of the the existing platform , which
-was a big fat jsp code base, repeated for 6 telcos , code was not unit tested and
-not even close to mvc 1.</p>
-
-<p>initial version of new platform is developed in 2 months with a core domain
-layer and application layer for vendor and access medium specific code.
-the idea was to develop a core domain layer serve as api and other as application layer for device/vendor specific code, now we have around 20 similar micro services (some RESTish and some json over http),
-each service is highly cohesive to device , vendor or a context.
-apart from acting as anti corruption layers these micro services can also scale out independently.</p>
-
-<h2>vertical to horizontal</h2>
-
-<p>for first few months we tried to scale up with torquebox in big box with jvm optimized for huge pages, but
-for zero downtime deployment and HA, we moved to scale out with openvz
-containers with apache/ mod_cluster(http) and haproxy(jms) as load balancers.</p>
-
-<p>we automated box setup to one click deployment using chef, and now we
-have around 50 nodes handling all load.</p>
-
-<h2>More About Architecture</h2>
-
-<p>ussd checkin in our system requires response in less then
-200ms , so system is modeled in events and base event checkin is
-processed in less then 50ms, a checkin further emits another max 5 events for
-various post processing actions , each event is processed by one or all sites.</p>
-
-<p>site is cluster of backend services with own db and cache deployed in different datacenter,
-and can independently process basic checkin and generally optimized for specific access
-mediums.</p>
-
-<p>sites are connected by a vpn tunnel over lease line.
-site can play one or multiple role and we control it by giving it
-capability and capability is controlled by chef.</p>
-
-<p><strong>distributed architecture over wan is not a big deal ,but problems starts if it is not a shared nothing</strong> , and multiplies with type and intensity of sharing.</p>
-
-<p>for some internal requirements we have to go with wan distribution and
-hence to sync lots of data for mobile portability and
-points/skipper/leaderboard calculations.</p>
-
-<p><em>multi site replication</em></p>
-
-<p>for muti site replication we are using application layer sync and
-created a custom sync framework with fan out and repeat on failure with exponential backoff features,
-data consistency is achieved by design by contract on sync endpoints.</p>
-
-<p>sync framework&#8217;s core is built with hornetq and netty connectors and it is working really great even with remote listeners.</p>
-
-<p><em>replicating single source of truth</em></p>
-
-<p>points and leadernoard is single source of truth and it is calculated by one site,
-we also need to access this data syncronpusly and it is not possible
-over vpn because of encryption and multiple connections overhead.</p>
-
-<p>we tried various approaches to sync this, and finally followed cqrs type approach and now have different
-request paths for read and writes. points are calculated in one site and synced to remote redis slave and read operation is always from redis slave.</p>
-
-<p>redis sync is almost realtime and very fast even for master to slave
-of slave over 2 hop vpn links separated datacenters.</p>
-
-<p><em>tuning centos</em></p>
-
-<p>system defaults not always works and cpu and memory sometimes are not
-indicators of bottleneck. we tuned various kernel
-parameters for network and connection related stuff.</p>
-
-<p>more on this in following post</p>
-
-<h2>Lesson Learned</h2>
-
-<ul>
-<li>dont trust your api users , they can stress your system in no time,  use timeouts and circuit breakers</li>
-<li>redis sync is very fast and it sync in millis from master to slave of
-slave even over 2 vpn link separated datacenters</li>
-<li>visualize every things , <a href="https://github.com/acaudwell/Logstalgia">logstaligia</a> is great for apache logs visualization and quick indicator of load</li>
-<li>adopt configuration management as soon as possible</li>
-</ul>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/04/27/hoppr-platform-in-last-10-months/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -225,12 +199,12 @@ slave even over 2 vpn link separated datacenters</li>
 <aside class="sidebar">
   
     <section>
-  <h1>About Me</h1>
-  <p>a polyglot programmer, devops, ex Thoughtworker and currently working as Architect with <a href="http://hoppr.com/"> hoppr</a> and responsible for technical direction/solutions and hacking hoppr platform for scalability and stability.</p>
-</section>
-<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/">Testing chef cookbook with docker and test kitchen</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/04/27/hoppr-platform-in-last-10-months/">Hoppr Platform in Last 10 Months</a>
@@ -246,8 +220,6 @@ slave even over 2 vpn link separated datacenters</li>
   </ul>
   
   <a href="https://github.com/timusg">@timusg</a> on GitHub
-  <br>
-  <a href="https://gist.github.com/timusg">@timusg&#8217;s gists</a>
   
   <script type="text/javascript">
     $.domReady(function(){
@@ -261,30 +233,13 @@ slave even over 2 vpn link separated datacenters</li>
 
         github.showRepos({
             user: 'timusg',
-            count: 0,
+            count: 4,
             skip_forks: true,
             target: '#gh_repos'
         });
     });
   </script>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("timusg", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/timusg" class="twitter-follow-button" data-show-count="false">Follow @timusg</a>
-  
 </section>
 
 

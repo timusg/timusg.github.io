@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://timusg.github.com/timusg/sitemap.xml 
+Sitemap: http://www.timusg.com/sitemap.xml 
