@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Sumit Gupta's Blog]]></title>
-  <link href="http://www.timusg.com/atom.xml" rel="self"/>
-  <link href="http://www.timusg.com/"/>
-  <updated>2013-10-20T00:34:41+05:30</updated>
-  <id>http://www.timusg.com/</id>
+  <link href="http://timusg.github.io/atom.xml" rel="self"/>
+  <link href="http://timusg.github.io/"/>
+  <updated>2013-10-22T23:45:44+05:30</updated>
+  <id>http://timusg.github.io/</id>
   <author>
     <name><![CDATA[Sumit Gupta]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Testing chef cookbook with docker and test kitchen]]></title>
-    <link href="http://www.timusg.com/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/"/>
+    <link href="http://timusg.github.io/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/"/>
     <updated>2013-10-15T17:44:00+05:30</updated>
-    <id>http://www.timusg.com/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen</id>
+    <id>http://timusg.github.io/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen</id>
     <content type="html"><![CDATA[<p><a href="https://github.com/opscode/test-kitchen">Test Kitchen</a> is a framework for isolated integration testing of chef
 recipes.</p>
 
@@ -191,9 +191,9 @@ file and execute tests more faster.</p>
   
   <entry>
     <title type="html"><![CDATA[Hoppr Platform in Last 10 Months]]></title>
-    <link href="http://www.timusg.com/blog/2013/04/27/hoppr-platform-in-last-10-months/"/>
+    <link href="http://timusg.github.io/blog/2013/04/27/hoppr-platform-in-last-10-months/"/>
     <updated>2013-04-27T20:45:00+05:30</updated>
-    <id>http://www.timusg.com/blog/2013/04/27/hoppr-platform-in-last-10-months</id>
+    <id>http://timusg.github.io/blog/2013/04/27/hoppr-platform-in-last-10-months</id>
     <content type="html"><![CDATA[<h2>Hoppr Platform Now</h2>
 
 <p>with 7.6 m users hoppr platform is now handling around 600k checkins and 3m+ events per day.</p>
