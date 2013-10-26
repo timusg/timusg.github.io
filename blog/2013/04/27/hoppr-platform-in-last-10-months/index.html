@@ -1,113 +1,119 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Hoppr Platform in Last 10 Months - Sumit Gupta's Blog</title>
-  <meta name="author" content="Sumit Gupta">
+	<meta charset="utf-8">
+	<title>Hoppr Platform in Last 10 Months - Sumit Gupta's Blog</title>
+	<meta name="author" content="timusg">
 
-  
-  <meta name="description" content="hoppr architecture">
-  <meta name="keywords" content="hoppr,hoppr architecture, hoppr checkins , ddd , cqrs, Hoppr,Y2CF Digital Media,">
+	
+	<meta name="description" content="hoppr architecture">
+	<meta name="keywords" content="hoppr,hoppr architecture, hoppr checkins , ddd , cqrs, Hoppr,Y2CF Digital Media,">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
-  <link rel="canonical" href="http://timusg.github.io/blog/2013/04/27/hoppr-platform-in-last-10-months/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Sumit Gupta's Blog" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+	<link href="/atom.xml" rel="alternate" title="Sumit Gupta's Blog" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://timusg.github.io/blog/2013/04/27/hoppr-platform-in-last-10-months/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-39717062-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Sumit Gupta's Blog</a></h1>
-  
-    <h2>code to production and every thing in between</h2>
-  
-</hgroup>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profile-container">
+  <div class="profilepic">
+    <script src="/javascripts/md5.js"></script>
+    <script type="text/javascript">
+$(function(){
+  $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("timusga@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+});
+    </script>
+  </div>
+
+  <hgroup>
+  <h1 class="site-title"><a href="/">Sumit Gupta's Blog</a></h1>
   
-</ul>
+  <p class="site-subtitle">code to production and every thing in between</p>
   
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:timusg.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
+  </hgroup>
+ <nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/timusg" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/timusg" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+
+
+</div>
+
+<nav id="main-nav"><ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
 </ul>
-
 </nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
+
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="article-inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   
-  <header>
-    
-      <h1 class="entry-title">Hoppr Platform in Last 10 Months</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+	<h1 class="title" itemprop="name">Hoppr Platform in Last 10 Months</h1>
   
 
 
-<time datetime="2013-04-27T20:45:00+05:30" pubdate data-updated="true">Apr 27<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
 
 
-<div class="entry-content"><h2>Hoppr Platform Now</h2>
+
+
+
+
+  
+
+
+
+  <div class="post-date"><time datetime="2013-04-27T20:45:00+05:30" data-updated="true" itemprop="datePublished">Apr 27<span>th</span>, 2013</time></div>
+	<div class="entry-content" itemprop="articleBody"><h2>Hoppr Platform Now</h2>
 
 <p>with 7.6 m users hoppr platform is now handling around 600k checkins and 3m+ events per day.</p>
 
 <p>underline is a heavily distributed architecture spread across three data centers and aws vpc.
 it support zero downtime deployment and minimalistic service availability even in case of wan link failure.</p>
+
+<!--more-->
+
 
 <h2>Tech Stack :</h2>
 
@@ -124,9 +130,6 @@ it support zero downtime deployment and minimalistic service availability even i
 <li>centos</li>
 <li>openvz</li>
 </ul>
-
-
-<!--more-->
 
 
 <h2>A big rewrite</h2>
@@ -211,132 +214,52 @@ slave even over 2 vpn link separated datacenters</li>
 
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">Sumit Gupta</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-27T20:45:00+05:30" pubdate data-updated="true">Apr 27<span>th</span>, 2013</time>
-      
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://timusg.github.io/blog/2013/04/27/hoppr-platform-in-last-10-months/" data-via="timusg" data-counturl="http://timusg.github.io/blog/2013/04/27/hoppr-platform-in-last-10-months/" >Tweet</a>
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/" title="Next Post: Testing chef cookbook with docker and test kitchen">Testing chef cookbook with docker and test kitchen &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
+	<div class="share">
+	<div class="share_icon_group addthis_toolbox addthis_default_style addthis_32x32_style">
+	
+  <a class="share_icon addthis_button_preferred_1"></a>
+	
+	
+	
+	<a class="share_icon addthis_button_preferred_4"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid="></script>
 </div>
 
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/">Testing chef cookbook with docker and test kitchen</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/27/hoppr-platform-in-last-10-months/">Hoppr Platform in Last 10 Months</a>
-      </li>
-    
-  </ul>
-</section>
 
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/timusg">@timusg</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'timusg',
-            count: 4,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section class="googleplus">
-  <h1> On Twitter </h1>
-  <ul>
-    <li> </li>
-    <li>
-    <a href="https://twitter.com/timusg">
-      <img src="https://twitter.com/images/resources/twitter-bird-light-bgs.png" width="32" height="32">
-      timusg
-    </a>
-    </li>
-  </ul>
-</section>
-
-
-
-
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Sumit Gupta -
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2013 - timusg -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
+<p>Theme: <a href="https://github.com/qingwang/octopress-theme-yinyang">YinYang</a></p>
 </footer>
-  
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
 
 
 
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-39717062-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 
@@ -345,8 +268,7 @@ slave even over 2 vpn link separated datacenters</li>
 
 
 
-Included file 'custom/twitter_sharing.html' not found in _includes directory
-
-
+		</div>
+	</div>
 </body>
 </html>

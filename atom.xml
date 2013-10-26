@@ -4,11 +4,11 @@
   <title><![CDATA[Sumit Gupta's Blog]]></title>
   <link href="http://timusg.github.io/atom.xml" rel="self"/>
   <link href="http://timusg.github.io/"/>
-  <updated>2013-10-23T00:27:16+05:30</updated>
+  <updated>2013-10-26T13:47:20+05:30</updated>
   <id>http://timusg.github.io/</id>
   <author>
-    <name><![CDATA[Sumit Gupta]]></name>
-    
+    <name><![CDATA[timusg]]></name>
+    <email><![CDATA[timusga@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
@@ -201,6 +201,9 @@ file and execute tests more faster.</p>
 <p>underline is a heavily distributed architecture spread across three data centers and aws vpc.
 it support zero downtime deployment and minimalistic service availability even in case of wan link failure.</p>
 
+<!--more-->
+
+
 <h2>Tech Stack :</h2>
 
 <ul>
@@ -216,9 +219,6 @@ it support zero downtime deployment and minimalistic service availability even i
 <li>centos</li>
 <li>openvz</li>
 </ul>
-
-
-<!--more-->
 
 
 <h2>A big rewrite</h2>
