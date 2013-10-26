@@ -4,7 +4,7 @@
   <title><![CDATA[Sumit Gupta's Blog]]></title>
   <link href="http://timusg.github.io/atom.xml" rel="self"/>
   <link href="http://timusg.github.io/"/>
-  <updated>2013-10-26T19:50:30+05:30</updated>
+  <updated>2013-10-26T19:58:27+05:30</updated>
   <id>http://timusg.github.io/</id>
   <author>
     <name><![CDATA[timusg]]></name>
@@ -156,34 +156,40 @@ Install it with community cookbook with chef and berkself</p>
 <h2>More optimisations</h2>
 
 <p>Test Kitchen downloads chef omnibus package every time while spawning
-a container, this step takes both time and bandwidth, this behaviour can
-be override by setting require_chef_omnibus flag, there are also few tricks to speed up this step.</p>
+a container, this step takes both time and bandwidth, this can be turned
+off by setting require_chef_omnibus flag to false, following are other options to optimize this</p>
 
 <ul>
 <li>use local repository for chef omnibus and override chef_omnibus_url flag</li>
 <li>use lightweight gem like chef zero</li>
 <li>utilize docker cache with  provision_command command</li>
-<li>package omnibus with container and build image for testing</li>
+<li>build new image with installed chef for testing</li>
 </ul>
 
 
 <p>New image can be easily created by using following
-docker file</p>
+commands</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>cat <span class="s">&lt;&lt; &#39;EOF&#39; &gt; Dockerfile</span>
 </span><span class='line'><span class="s">FROM centos</span>
 </span><span class='line'><span class="s">RUN curl -L https://www.opscode.com/chef/install.sh | sudo bash</span>
+</span><span class='line'>
+</span><span class='line'><span class="s">RUN #install additopnal packages</span>
+</span><span class='line'>
 </span><span class='line'><span class="s">EOF</span>
 </span><span class='line'>docker build -t  image_name .
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Set and image: image_name in .kitchen.yml
+<p>Set image key to image_name in .kitchen.yml
 file and execute tests more faster.</p>
 ]]></content>
   </entry>
