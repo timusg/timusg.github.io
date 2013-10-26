@@ -8,7 +8,7 @@
 
 	
 	<meta name="description" content="Testing Chef Cookbook With Docker and Test Kitchen Test Kitchen is a framework for isolated integration testing of chef
-recipes. For testing a &hellip;">
+recipes For testing a recipe &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -97,14 +97,13 @@ $(function(){
 	<h1 class="title" itemprop="name"><a href="/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/" itemprop="url">Testing Chef Cookbook With Docker and Test Kitchen</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<p><a href="https://github.com/opscode/test-kitchen">Test Kitchen</a> is a framework for isolated integration testing of chef
-recipes.</p>
+recipes</p>
 
 <p>For testing a recipe it spawn a vm, execute tests and then destroys it.
 For local cookbook development and manual testing of changes
-<a href="http://www.vagrantup.com/">vagarnt</a> is definitely the first choice,
-but for developing cookbook with automated tests suits this VM based approach is very
-slow and as test kitchen destroys box with each run, testing feedback time become really important factor in development speed and is worthy candidate for
-optimisation.</p>
+<a href="http://www.vagrantup.com/">vagarnt</a> is definitely the best choice,
+but for developing cookbook with automated tests suits faster test feedback is really important, since VM based approach is very
+slow and it is worth to try containers for cookbook testing.</p>
 
 
 		
