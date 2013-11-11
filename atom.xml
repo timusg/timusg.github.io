@@ -4,7 +4,7 @@
   <title><![CDATA[Sumit Gupta's Blog]]></title>
   <link href="http://timusg.github.io/atom.xml" rel="self"/>
   <link href="http://timusg.github.io/"/>
-  <updated>2013-10-26T19:58:27+05:30</updated>
+  <updated>2013-11-11T21:53:20+05:30</updated>
   <id>http://timusg.github.io/</id>
   <author>
     <name><![CDATA[timusg]]></name>
@@ -51,7 +51,7 @@ with <a href="https://github.com/portertech/kitchen-docker">kitchen-docker</a> p
 platform or
 Install it with community cookbook with chef and berkself</p>
 
-<figure class='code'><figcaption><span>Berksfile for install docker</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Berksfile to install docker</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -238,7 +238,7 @@ the idea was to develop a core domain layer serve as api and other as applicatio
 each service is highly cohesive to device , vendor or a context.
 apart from acting as anti corruption layers these micro services can also scale out independently.</p>
 
-<h2>vertical to horizontal</h2>
+<h2>Vertical to Horizontal</h2>
 
 <p>for first few months we tried to scale up with torquebox in big box with jvm optimized for huge pages, but
 for zero downtime deployment and HA, we moved to scale out with openvz

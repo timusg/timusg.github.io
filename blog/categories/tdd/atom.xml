@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tdd | Sumit Gupta's Blog]]></title>
   <link href="http://timusg.github.io/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://timusg.github.io/"/>
-  <updated>2013-10-26T19:58:27+05:30</updated>
+  <updated>2013-11-11T21:53:20+05:30</updated>
   <id>http://timusg.github.io/</id>
   <author>
     <name><![CDATA[timusg]]></name>
@@ -51,7 +51,7 @@ with <a href="https://github.com/portertech/kitchen-docker">kitchen-docker</a> p
 platform or
 Install it with community cookbook with chef and berkself</p>
 
-<p><code>ruby Berksfile for install docker
+<p><code>ruby Berksfile to install docker
 site :opscode
 metadata
 group :integration do
