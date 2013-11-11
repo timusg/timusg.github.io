@@ -1,0 +1,411 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>code test and automate infrastructure | Part I - modularity and design patterns in chef codebase |  timusg (sumit gupta)</title>
+	<meta name="author" content="timusg">
+
+	
+	<meta name="description" content="design patterns and modularity in chef code base">
+	<meta name="keywords" content="chef, design patterns, infrastructure as code mantra, modularity , berkshelf">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Sumit Gupta's Blog" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://timusg.github.io/blog/2013/11/07/code-test-and-automate-infrastructure/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profile-container">
+  <div class="profilepic">
+    <script src="/javascripts/md5.js"></script>
+    <script type="text/javascript">
+$(function(){
+  $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("timusga@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+});
+    </script>
+  </div>
+
+  <hgroup>
+  <h1 class="site-title"><a href="/">Sumit Gupta's Blog</a></h1>
+  
+  <p class="site-subtitle">code to production and every thing in between</p>
+  
+  </hgroup>
+ <nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/timusg" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/timusg" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</div>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="article-inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+	<h1 class="title" itemprop="name">Code Test and Automate Infrastructure</h1>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+  <div class="post-date"><time datetime="2013-11-07T16:36:00+05:30" data-updated="true" itemprop="datePublished">Nov 7<span>th</span>, 2013</time></div>
+	<div class="entry-content" itemprop="articleBody"><p><span class='pullquote-right' data-pullquote='Infrastructure as code mantra'></p>
+
+<p>Managing infrastructure by hand or shell scripts is pain specially if your application architecture consists of multiple services.
+For scaling such application adoption of Infrastructure as code mantra is a must have.
+There are many ways and frameworks to japa this mantra and Chef, puppet ansible are few of many tools in configuration management segment which provides DSL to implement automated configuration , software installation , deployment etc &#8230;</p>
+
+<p>This area overlap between dev and ops domain and because of different skillset and practices of these domains, tools/patterns are still evolving to use the best of both domains,
+slowly but it is picking up pace with recent increase in devops skills as more and more experts from both domains has started contributing in it.
+</span></p>
+
+<p>This post is about our adoption of this mantra with chef and applying current best practices for code, test and automate infrastructure.</p>
+
+<!--more-->
+
+
+<h2>Part One - The Code</h2>
+
+<p>Code should be extensible, maintainable, reusable and in short modular
+but keeping all chef code in single repository makes it bit difficult.</p>
+
+<h3>Problems:</h3>
+
+<ul>
+<li>Cookbooks in one big repository are difficult to develop and test independently</li>
+<li>Cookbooks in one repository are not modular and difficult to
+distribute and reuse.</li>
+<li>Code and data is in one place, but both changes with different pace.</li>
+</ul>
+
+
+<h3>Solution:</h3>
+
+<p>To solve modularity issue, we use <a href="http://berkshelf.com/">berkshelf</a>.
+It not only help in distributing and reusing cookbooks in a easy way, but also provides a foundation to apply good software principals, most of ideas in this post are from berkshelf itself.</p>
+
+<p><em>We take care of following points while writing chef code.</em></p>
+
+<ul>
+<li>Use community cookbooks and if required write wrappers for extension.</li>
+<li>No roles, use aggregated recipes
+instead, roles provides global variables and also not versioned.</li>
+<li>Use convention over configuration with using search and sane defaults.</li>
+<li>Create application cookbook with independent git repo for every
+application service.</li>
+</ul>
+
+
+<p>Following are the cookbook types and patterns, which I frequently encounter while writing chef code.</p>
+
+<h2>Cookbook types and Patterns</h2>
+
+<h3><a name="wrappercookbook"></a> Wrapper Recipe</h3>
+
+<p>Wrapper recipe is like decorator pattern and is basic unit for extending <a href="#communitycookbook">community cookbooks</a>.</p>
+
+<figure class='code'><figcaption><span>db.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">include_recipe</span> <span class="s2">&quot;postgresql::server&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">foo</span> <span class="s2">&quot;extra configuration for db&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Wrapper recipe provides a way to encapsulate third party logic with your
+logic in one recipe.</p>
+
+<h3>Aggregated Recipe</h3>
+
+<p>These are equivalent to aggregation pattern and only includes other recipes.</p>
+
+<figure class='code'><figcaption><span>application cookbook: default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">include_recipe</span> <span class="s1">&#39;app&#39;</span>
+</span><span class='line'><span class="n">include_recipe</span> <span class="s1">&#39;db&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>These are ideal candidate to replace roles,
+For example default recipes can aggregate app and db recipes, and provide a role to quickly set up a dev test machine.</p>
+
+<h3>Private Recipe</h3>
+
+<p>Private recipe is like the abstract class and not exposed to public (outside of
+ cookbook), can be used for code separation or reuse inside cookbook, it is convention to prefix its name with _ (underscore)</p>
+
+<figure class='code'><figcaption><span>private recipe example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>.
+</span><span class='line'>-- recipes
+</span><span class='line'>    |-- _common.rb
+</span><span class='line'>    |-- app.rb
+</span><span class='line'>    <span class="sb">`</span>-- cache.rb
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3><a name="communitycookbook"></a> Community Cookbooks</h3>
+
+<p>These are the open source cookbooks and maintained by community. These are Available in opscode or similar site for download.
+Instead of reinventing the wheel prefer to use community cookbooks.</p>
+
+<h3><a name="applictioncookbook"></a> Application Cookbook</h3>
+
+<p>Application cookbook is the container of the configuration code for the application, I prefer to create one cookbook for
+each rest service and different recipes in it for its various infrastructural layers for example recipes for each layer like db, app, cache, proxy, elb so on</p>
+
+<figure class='code'><figcaption><span>application cookbook dir structure</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>.
+</span><span class='line'>|-- Berksfile
+</span><span class='line'>|-- Vagrantfile
+</span><span class='line'>|-- attributes
+</span><span class='line'>|   |-- app.rb
+</span><span class='line'>|   <span class="sb">`</span>-- db.rb
+</span><span class='line'>|-- metadata.rb
+</span><span class='line'><span class="sb">`</span>-- recipes
+</span><span class='line'>    |-- app.rb
+</span><span class='line'>    |-- db.rb
+</span><span class='line'>    <span class="sb">`</span>-- cache.rb
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It provides a name space for application and its layers, for example application foo&#8217;s
+database is searchable with foo::db name so it replace role for
+tag and search requirements.</p>
+
+<p>Although multiple thin services based architecture often tempt to use one cookbook using some sort of tagging, but this approach often leads to conditional code in the end, So consider to use <a href="#librarycookbook"> library cookbook </a> for code reuse in application cookbooks.</p>
+
+<h3><a name="librarycookbook"></a> Library Cookbook</h3>
+
+<p>Library cookbook is like the brain and heart of application&#8217;s configuration codebase, it is container of all the common code required in application cookbooks.
+It is like abstarct class at cookbook level and thus contains no recipe and only provides abstraction over common code with lwrps and definitions.</p>
+
+<p>Common code includes code for set up app servers (puma/nginx combo, torquebox), application rpm/omnibus installers and so on and depends on application stack.</p>
+
+<p>It can be combined with the <a href="#basecookbook">base cookbook</a> which
+provides recipes for basic node configuration.</p>
+
+<h3><a name="basecookbook"></a> Base Cookbook</h3>
+
+<p>It provides recipes for basic system configuration.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>.
+</span><span class='line'>|-- Berksfile
+</span><span class='line'>|-- Vagrantfile
+</span><span class='line'>|-- attributes
+</span><span class='line'>|   |-- stagging.rb
+</span><span class='line'>|   `-- production.rb
+</span><span class='line'>|-- metadata.rb
+</span><span class='line'>`-- recipes
+</span><span class='line'>    |-- _common.rb
+</span><span class='line'>    |-- stagging.rb
+</span><span class='line'>    `-- production.rb</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I prefer to have separate recipes for different environments.</p>
+
+<p>It replace the base role and install basic packages like Vim, tmux/screen, yum repos, environment specific tools like debug, tracing tools, monitoring agents etc. The benefit over role is that you can version it and also using different recipes for different environments provides more flexibility.</p>
+
+<p>It can be combined with the <a href="#librarycookbook">Library cookbook</a>.</p>
+
+<h3><a name="rolecookbook"></a> Role Cookbook</h3>
+
+<p>This cookbook is replacement for the roles and can be used in place of base
+cookbook if more fine grained control required for configuring roles.</p>
+
+<p>But since we use application cookbook with roles like recipe names, this
+cookbook is not really required.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>.
+</span><span class='line'>|-- Berksfile
+</span><span class='line'>|-- Vagrantfile
+</span><span class='line'>|-- attributes
+</span><span class='line'>|   |-- web-server.rb
+</span><span class='line'>|   `-- db.rb
+</span><span class='line'>|-- metadata.rb
+</span><span class='line'>`-- recipes
+</span><span class='line'>    |-- web-server.rb
+</span><span class='line'>    `-- db.rb</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Infrastructure Essential Cookbook</h3>
+
+<p>Any infrastructure contains two type of components</p>
+
+<ul>
+<li>Application and its dependencies like db, cache</li>
+<li>Other essential components which crosscut entire infrastructure like chef server, etcd, bind, vpn, monitoring servers and CI server</li>
+</ul>
+
+
+<p>As Application cookbook take care of application related stuff, for configuring second I prefer to create another cookbook and I call it infra essential cookbook and it contains recipes and scripts for all remaining essential components, It also utilize wrapper recipe pattern with community cookbooks.</p>
+
+<p>This cookbook provides two benefits</p>
+
+<ol>
+<li>one place for all scripts and recipes for all essential infrastructure
+components.</li>
+<li>A namespace, which is useful for searching and setting fqdn etc in
+application cookbooks.</li>
+</ol>
+
+
+<p><em>Library, base and infrastructure cookbooks can be combined in one
+cookbook like mixed
+patterns or stay in their own cookbooks, but it all depends on codebase size
+and testing needs</em></p>
+
+<h2>Follow Up</h2>
+
+<p>This post mainly covered the modularity and pattern aspects in chef
+code base, follow-up posts of this series will cover code data separation, testing and auto deployment/provisioning strategies in chef managed infra.</p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="share_icon_group addthis_toolbox addthis_default_style addthis_32x32_style">
+	
+  <a class="share_icon addthis_button_preferred_1"></a>
+	
+	
+	
+	<a class="share_icon addthis_button_preferred_4"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2013 - timusg -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+<p>Theme: <a href="https://github.com/qingwang/octopress-theme-yinyang">YinYang</a></p>
+</footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-39717062-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+
+		</div>
+	</div>
+</body>
+</html>
