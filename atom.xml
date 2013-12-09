@@ -4,7 +4,7 @@
   <title><![CDATA[Sumit Gupta's Blog]]></title>
   <link href="http://timusg.github.io/atom.xml" rel="self"/>
   <link href="http://timusg.github.io/"/>
-  <updated>2013-12-09T23:17:23+05:30</updated>
+  <updated>2013-12-09T23:22:06+05:30</updated>
   <id>http://timusg.github.io/</id>
   <author>
     <name><![CDATA[timusg]]></name>
@@ -65,12 +65,14 @@ it support various test backend like bats and server spec, test kitchen tests ar
 <h4>Cookbook for setting up CI server</h4>
 
 <p>we have integrated docker in our CI server and are using test kitchen with docker plugin for running integration tests.
-here is <a href="https://github.com/codeignition/cookbook-pipeline">cookbook</a> which set up Jenkins, Docker and required packages and create builds jobs from attributes.</p>
+here is a <a href="https://github.com/codeignition/cookbook-pipeline">cookbook</a> which can set up Jenkins, Docker and required packages and create builds jobs from attributes.</p>
 
 <h2>Follow Up</h2>
 
-<p>Once automated test suits and CI server in place, then it open the further doors for automating other knife related tasks for uploading cookbook and bumping environments. the next article will cover this
-part in detail.</p>
+<p>Once automated test suits and CI server in place, then it open the
+further doors for automating other knife related tasks for uploading
+cookbook and bumping environments, the next article will cover
+further automation in detail.</p>
 ]]></content>
   </entry>
   
