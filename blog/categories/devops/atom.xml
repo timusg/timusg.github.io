@@ -4,7 +4,7 @@
   <title><![CDATA[Category: devops | Sumit Gupta's Blog]]></title>
   <link href="http://timusg.github.io/blog/categories/devops/atom.xml" rel="self"/>
   <link href="http://timusg.github.io/"/>
-  <updated>2013-12-09T23:15:11+05:30</updated>
+  <updated>2013-12-09T23:17:23+05:30</updated>
   <id>http://timusg.github.io/</id>
   <author>
     <name><![CDATA[timusg]]></name>
@@ -12,6 +12,66 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[code test and automate infrastructure - part II]]></title>
+    <link href="http://timusg.github.io/blog/2013/12/09/code-test-and-automate-infrastructure-part-ii/"/>
+    <updated>2013-12-09T18:54:00+05:30</updated>
+    <id>http://timusg.github.io/blog/2013/12/09/code-test-and-automate-infrastructure-part-ii</id>
+    <content type="html"><![CDATA[<h2>Part Two  - Testing</h2>
+
+<p>Good code evolve with tests and CI is vital part of development cycle specially if multiple developers are working on the same code base,
+these development practices also worth when applied to the infrastructure code.</p>
+
+<p>One compelling reason for not doing so is that as compared to application code, infrastructure code is more resilient and not frequently changes. But still automated tests not only ensure sanity of code but often fasten development speed by reducing lot
+of time required for manual testing of changes.</p>
+
+<!--more-->
+
+
+<h3>Codebase changes for testing</h3>
+
+<p>As mentioned in <a href="/blog/2013/11/07/code-test-and-automate-infrastructure/">first part</a> one repo per cookbook for
+modularity also simplify the independent testing of the cookbook,
+but don't worry if you have legacy codebase, there are also tools like <a href="https://github.com/customink/strainer">strainer</a> which simplify testing of monolithic chef repo.</p>
+
+<h3>Cookbook build pipeline</h3>
+
+<p>Cookbook testing pipeline in CI can be like</p>
+
+<p><center><img src='/images/plantuml/ac9c62cd2f97416ce48835bc9f070fdf.png'></center></p>
+
+<h5>Lint</h5>
+
+<p>rubocop is ruby static code analyzer and foodcritic is lint tool, they mainly target the code conventions,
+foodcritic also check some coding error like invalid resource actions.</p>
+
+<h5>Unit Tests:</h5>
+
+<p>chef spec is unit testing framework which is based upon rspec of ruby land and is pseudo convergence
+framework means it run cookbook locally without  without actually converging a node, the benefit it provide is fast feedback and good for testing template and configuration
+files, permissions etc... , other tools like searchef and chef-zero
+plays well with it.</p>
+
+<h4>Integration Tests:</h4>
+
+<p>Test kitchen is post convergence framework and it spawn a machine for running integration tests in isolated environment.
+it support various test backend like bats and server spec, test kitchen tests are slower than unit tests test but it test actual system convergence and ensure that target system is configured properly, ideal for testing cookbooks in different distros.</p>
+
+<p>test kitchen with vagrant based approach is slow and you can use
+<a href="/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/">container based approach</a> for faster feedback.</p>
+
+<h4>Cookbook for setting up CI server</h4>
+
+<p>we have integrated docker in our CI server and are using test kitchen with docker plugin for running integration tests.
+here is <a href="https://github.com/codeignition/cookbook-pipeline">cookbook</a> which set up Jenkins, Docker and required packages and create builds jobs from attributes.</p>
+
+<h2>Follow Up</h2>
+
+<p>Once automated test suits and CI server in place, then it open the further doors for automating other knife related tasks for uploading cookbook and bumping environments. the next article will cover this
+part in detail.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[code test and automate infrastructure]]></title>
