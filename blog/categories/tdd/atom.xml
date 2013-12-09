@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tdd | Sumit Gupta's Blog]]></title>
   <link href="http://timusg.github.io/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://timusg.github.io/"/>
-  <updated>2013-12-09T23:22:06+05:30</updated>
+  <updated>2013-12-09T23:31:41+05:30</updated>
   <id>http://timusg.github.io/</id>
   <author>
     <name><![CDATA[timusg]]></name>
@@ -29,11 +29,13 @@ of time required for manual testing of changes.</p>
 <!--more-->
 
 
-<h3>Codebase changes for testing</h3>
+<h3>Setup</h3>
 
 <p>As mentioned in <a href="/blog/2013/11/07/code-test-and-automate-infrastructure/">first part</a> one repo per cookbook for
 modularity also simplify the independent testing of the cookbook,
 but don't worry if you have legacy codebase, there are also tools like <a href="https://github.com/customink/strainer">strainer</a> which simplify testing of monolithic chef repo.</p>
+
+<p>Refer community <a href="https://github.com/opscode-cookbooks/ntp.git">ntp</a> cookbook for testing reference.</p>
 
 <h3>Cookbook build pipeline</h3>
 
@@ -138,7 +140,7 @@ end
 
 <h3>Sample Cookbook</h3>
 
-<p>Download <a href="https://github.com/opscode-cookbooks/ntp.git">ntp</a> cookbook for testing, beacuse it also serve as a testing documentation reference</p>
+<p>Download <a href="https://github.com/opscode-cookbooks/ntp.git">ntp</a> cookbook for testing, because it also serve as a testing documentation reference</p>
 
 <h2>Execute Tests</h2>
 

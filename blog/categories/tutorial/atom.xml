@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tutorial | Sumit Gupta's Blog]]></title>
   <link href="http://timusg.github.io/blog/categories/tutorial/atom.xml" rel="self"/>
   <link href="http://timusg.github.io/"/>
-  <updated>2013-12-09T23:22:06+05:30</updated>
+  <updated>2013-12-09T23:31:41+05:30</updated>
   <id>http://timusg.github.io/</id>
   <author>
     <name><![CDATA[timusg]]></name>
@@ -76,7 +76,7 @@ end
 
 <h3>Sample Cookbook</h3>
 
-<p>Download <a href="https://github.com/opscode-cookbooks/ntp.git">ntp</a> cookbook for testing, beacuse it also serve as a testing documentation reference</p>
+<p>Download <a href="https://github.com/opscode-cookbooks/ntp.git">ntp</a> cookbook for testing, because it also serve as a testing documentation reference</p>
 
 <h2>Execute Tests</h2>
 
