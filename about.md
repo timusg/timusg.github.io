@@ -15,4 +15,4 @@ and mobile application development.
 
 I enjoy architecting and implementation of large scale distributed
 platforms. I have been a part of various organisations from product
-startups to the one building for large financial institutions.
+startups to the one building for large financial institutions 
