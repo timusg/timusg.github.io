@@ -120,7 +120,7 @@ be override by setting require_chef_omnibus flag, there are also few tricks to s
 New image can be easily created by using following
 docker file 
 
-{% highlight shell %}
+{% highlight bash %}
 cat << 'EOF' > Dockerfile
 FROM centos
 RUN curl -L https://www.opscode.com/chef/install.sh | sudo bash
