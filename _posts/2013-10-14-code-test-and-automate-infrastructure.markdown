@@ -87,7 +87,7 @@ this contain application specific configuration code and often use
 abstracted code from library cookbook's lwrps and definition.
 
 recipes are created for each component like db , app , cache , proxy , elb so on
-{% highlight shell %}
+{% highlight bash %}
 #application cookbook dir structure
 .
 |-- Berksfile
@@ -116,7 +116,7 @@ it can be combined with base cookbook also.
 
 It replaces the base role and install basic packages like vim , tmux/screen , yum repos , environment specific tools like debug, tracing tools, monitoring clients etc . the benefit over role is that you can version it and also different recipes for environment provides more flexibility.
 
-{% highlight shell %}
+{% highlight bash %}
 .
 |-- Berksfile
 |-- Vagrantfile

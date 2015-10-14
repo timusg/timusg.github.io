@@ -164,7 +164,7 @@ abstracted code from library cookbook’s lwrps and definition.</p>
 
 <p>recipes are created for each component like db , app , cache , proxy , elb so on</p>
 
-<div class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c">#application cookbook dir structure</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#application cookbook dir structure</span>
 .
 |-- Berksfile
 |-- Vagrantfile
@@ -196,7 +196,7 @@ for example set up app servers (puma/nginx combo , torquebox ), app rpm/omnibus 
 
 <p>It replaces the base role and install basic packages like vim , tmux/screen , yum repos , environment specific tools like debug, tracing tools, monitoring clients etc . the benefit over role is that you can version it and also different recipes for environment provides more flexibility.</p>
 
-<div class="highlight"><pre><code class="language-shell" data-lang="shell">.
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">.
 |-- Berksfile
 |-- Vagrantfile
 |-- attributes

@@ -6,8 +6,8 @@
 </description>
     <link>http://www.timusg.com//</link>
     <atom:link href="http://www.timusg.com//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 14 Oct 2015 09:30:03 +0530</pubDate>
-    <lastBuildDate>Wed, 14 Oct 2015 09:30:03 +0530</lastBuildDate>
+    <pubDate>Wed, 14 Oct 2015 09:39:24 +0530</pubDate>
+    <lastBuildDate>Wed, 14 Oct 2015 09:39:24 +0530</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -334,7 +334,7 @@ be override by setting require_chef_omnibus flag, there are also few tricks to s
 &lt;p&gt;New image can be easily created by using following
 docker file &lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;cat &lt;span class=&quot;sh&quot;&gt;&amp;lt;&amp;lt; &#39;EOF&#39; &amp;gt; Dockerfile
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;cat &lt;span class=&quot;sh&quot;&gt;&amp;lt;&amp;lt; &#39;EOF&#39; &amp;gt; Dockerfile
 FROM centos
 RUN curl -L https://www.opscode.com/chef/install.sh | sudo bash
 EOF
@@ -441,7 +441,7 @@ abstracted code from library cookbook’s lwrps and definition.&lt;/p&gt;
 
 &lt;p&gt;recipes are created for each component like db , app , cache , proxy , elb so on&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;c&quot;&gt;#application cookbook dir structure&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#application cookbook dir structure&lt;/span&gt;
 .
 |-- Berksfile
 |-- Vagrantfile
@@ -473,7 +473,7 @@ for example set up app servers (puma/nginx combo , torquebox ), app rpm/omnibus 
 
 &lt;p&gt;It replaces the base role and install basic packages like vim , tmux/screen , yum repos , environment specific tools like debug, tracing tools, monitoring clients etc . the benefit over role is that you can version it and also different recipes for environment provides more flexibility.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;.
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;.
 |-- Berksfile
 |-- Vagrantfile
 |-- attributes
