@@ -1,12 +1,29 @@
+# Build settings
+markdown: redcarpet
+highlighter: pygments
+gems:
+  - jemoji
 # Site settings
-title: Sumit Gupta
-email: me@guptasumit.com
-description: > # this means to ignore newlines until "baseurl:"
-  code to production and every thing in between
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://timusg.com" # the base hostname & protocol for your site
-twitter_username: timusg
-github_username:  timusg
+title: "Timusg's blog"
+description: > # this means to ignore newlines until "email:"
+   Code Automate Scale
+
+email: me@timusg.com
+#blog logo
+logo: "https://avatars0.githubusercontent.com/u/344225?v=3&s=460"
+# blog cover
+cover: "/assets/images/banner.jpg"
+
+name: 'Sumit Gupta'
+author: 'Sumit Gupta'
+author_image: "https://avatars0.githubusercontent.com/u/344225?v=3&s=460"
+
+paginate:	5
+
+url: "http://www.timusg.com/"
+baseurl: ""
+twitter_handle: '@timusg'
+
 
 analytics :
   provider : google
@@ -18,3 +35,33 @@ markdown: kramdown
 highlighter: rouge
 lsi:         false
 excerpt_separator: "\n\n"
+
+# social icons and sharing options
+social:
+  - icon:	twitter
+    url:	https://twitter.com/timusg
+    desc: Follow me on twitter
+    share_url: http://twitter.com/share
+    share_title: ?text=
+    share_link: "&amp;url="
+
+#  - icon:	facebook
+#    url:	https://facebook.com/???
+#    desc: Connect with me facebook
+#    share_url: https://www.facebook.com/sharer.php
+#    share_title: ?t=
+#    share_link: "&amp;u="
+
+  - icon:	github
+    url:	https://github.com/timusg
+    desc:	Fork me on github
+    share_url:
+    share_title:
+    share_link:
+
+#  - icon:	google-plus
+#    url:	https://google.com/???
+#    desc:	Add me on google+
+#    share_url:
+#    share_title:
+#    share_link:

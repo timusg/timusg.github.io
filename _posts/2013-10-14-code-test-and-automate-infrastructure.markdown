@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "code test and automate infrastructure"
+title: "Code test and automate infrastructure"
 date: 2013-10-14 16:36
 comments: true
 categories: 

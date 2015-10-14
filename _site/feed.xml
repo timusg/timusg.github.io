@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Sumit Gupta</title>
-    <description>code to production and every thing in between
+    <title>Timusg&#39;s blog</title>
+    <description>Code Automate Scale
 </description>
-    <link>http://timusg.com/</link>
-    <atom:link href="http://timusg.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 28 Sep 2015 14:47:00 +0530</pubDate>
-    <lastBuildDate>Mon, 28 Sep 2015 14:47:00 +0530</lastBuildDate>
+    <link>http://www.timusg.com//</link>
+    <atom:link href="http://www.timusg.com//feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 14 Oct 2015 09:30:03 +0530</pubDate>
+    <lastBuildDate>Wed, 14 Oct 2015 09:30:03 +0530</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -58,8 +58,8 @@
 &lt;/ol&gt;
 </description>
         <pubDate>Thu, 17 Sep 2015 00:00:00 +0530</pubDate>
-        <link>http://timusg.com/2015/09/17/monitor-the-business-not-just-the-infrastructure.html</link>
-        <guid isPermaLink="true">http://timusg.com/2015/09/17/monitor-the-business-not-just-the-infrastructure.html</guid>
+        <link>http://www.timusg.com//2015/09/17/monitor-the-business-not-just-the-infrastructure.html</link>
+        <guid isPermaLink="true">http://www.timusg.com//2015/09/17/monitor-the-business-not-just-the-infrastructure.html</guid>
         
         <category>monitoring</category>
         
@@ -146,8 +146,8 @@ All these problems make it very difficult to tail or grep the logs in an individ
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 04 Jun 2015 00:00:00 +0530</pubDate>
-        <link>http://timusg.com/2015/06/04/centralized-logging.html</link>
-        <guid isPermaLink="true">http://timusg.com/2015/06/04/centralized-logging.html</guid>
+        <link>http://www.timusg.com//2015/06/04/centralized-logging.html</link>
+        <guid isPermaLink="true">http://www.timusg.com//2015/06/04/centralized-logging.html</guid>
         
         <category>loggings</category>
         
@@ -181,12 +181,10 @@ All these problems make it very difficult to tail or grep the logs in an individ
       </item>
     
       <item>
-        <title>code test and automate infrastructure - part II</title>
-        <description>&lt;h2 id=&quot;part-two----testing&quot;&gt;Part Two  - Testing&lt;/h2&gt;
+        <title>Code test and automate infrastructure - part II</title>
+        <description>&lt;p&gt;Code should evolve with tests and CI is vital part of it specially multiple developers working in same code base.&lt;/p&gt;
 
-&lt;p&gt;Code evolve with tests and CI is vital part of it if multiple developers working in same code base,&lt;/p&gt;
-
-&lt;p&gt;As in first part I mentioned to use one repo for each project, we can use execute tests in ci for every commit and
+&lt;p&gt;As in the first part I mentioned to use one repo for each project, we can use execute tests in ci for every commit and
 generate artifacts which are cookbook and environment.&lt;/p&gt;
 
 &lt;p&gt;Recent version of chef spec is really good for unit tests and test
@@ -223,15 +221,15 @@ chef zero&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 15 Oct 2013 18:54:00 +0530</pubDate>
-        <link>http://timusg.com/blog/2013/12/09/code-test-and-automate-infrastructure-part-ii/</link>
-        <guid isPermaLink="true">http://timusg.com/blog/2013/12/09/code-test-and-automate-infrastructure-part-ii/</guid>
+        <link>http://www.timusg.com//blog/2013/12/09/code-test-and-automate-infrastructure-part-ii/</link>
+        <guid isPermaLink="true">http://www.timusg.com//blog/2013/12/09/code-test-and-automate-infrastructure-part-ii/</guid>
         
         
       </item>
     
       <item>
         <title>Testing chef cookbook with docker and test kitchen</title>
-        <description>&lt;p&gt;&lt;a href=&quot;https://github.com/opscode/test-kitchen&quot;&gt;Test Kitchen&lt;/a&gt; is a framework for isolated integration testing of chef
+        <description>&lt;p&gt;Test Kitchen is a framework for isolated integration testing of chef
 recipes.&lt;/p&gt;
 
 &lt;p&gt;For testing a recipe it spawn a vm, execute tests and then destroys it.
@@ -242,13 +240,13 @@ slow and as test kitchen destroys box with each run, testing feedback time becom
 optimisation.&lt;/p&gt;
 
 &lt;h2 id=&quot;optimisation&quot;&gt;Optimisation&lt;/h2&gt;
-&lt;p&gt;Containers like openvz and lxc are faster to launch and are very lightweight as compared to virtual box and other VM based backends. &lt;/p&gt;
+&lt;p&gt;Containers like openvz and lxc are faster to launch and are very lightweight as compared to virtual box and other VM based backends.&lt;/p&gt;
 
 &lt;p&gt;As compared to open vz, lxc is available on the mainstream linux kernel but managing lxc container with scripts
-is not an easy task, there are two lxc baced framework available, &lt;a href=&quot;https://github.com/fgrehm/vagrant-lxc&quot;&gt;vagrant lxc&lt;/a&gt;(vagrant lxc provider) and &lt;a href=&quot;https://www.docker.io/&quot;&gt;docker&lt;/a&gt; (package and run application as container) which provides 
+is not an easy task, there are two lxc baced framework available, &lt;a href=&quot;https://github.com/fgrehm/vagrant-lxc&quot;&gt;vagrant lxc&lt;/a&gt;(vagrant lxc provider) and &lt;a href=&quot;https://www.docker.io/&quot;&gt;docker&lt;/a&gt; (package and run application as container) which provides
 good abstraction layer over lxc.&lt;/p&gt;
 
-&lt;p&gt;Test kitchen has a architecture for pluggable virualization backend and it support vagrant, ec2 and recently
+&lt;p&gt;&lt;a href=&quot;https://github.com/opscode/test-kitchen&quot;&gt;Test Kitchen&lt;/a&gt; has a architecture for pluggable virualization backend and it support vagrant, ec2 and recently
 with &lt;a href=&quot;https://github.com/portertech/kitchen-docker&quot;&gt;kitchen-docker&lt;/a&gt; plugin, docker can also used as driver.&lt;/p&gt;
 
 &lt;!--more--&gt;
@@ -346,8 +344,8 @@ EOF
 file and execute tests more faster.&lt;/p&gt;
 </description>
         <pubDate>Tue, 15 Oct 2013 17:44:00 +0530</pubDate>
-        <link>http://timusg.com/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/</link>
-        <guid isPermaLink="true">http://timusg.com/blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/</guid>
+        <link>http://www.timusg.com//blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/</link>
+        <guid isPermaLink="true">http://www.timusg.com//blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/</guid>
         
         
         <category>devops</category>
@@ -357,7 +355,7 @@ file and execute tests more faster.&lt;/p&gt;
       </item>
     
       <item>
-        <title>code test and automate infrastructure</title>
+        <title>Code test and automate infrastructure</title>
         <description>&lt;p&gt;Infrastructure as code is mantra these days and is often japas by using various frameworks like chef puppet and ansible etc…
 this area {“ cross cuts between developers and ops domains”}, and still the patterns for infrastructure code are still evolving.&lt;/p&gt;
 
@@ -502,17 +500,15 @@ application cookbooks.&lt;/p&gt;
 pipelines.&lt;/p&gt;
 </description>
         <pubDate>Mon, 14 Oct 2013 16:36:00 +0530</pubDate>
-        <link>http://timusg.com/blog/2013/11/07/code-test-and-automate-infrastructure/</link>
-        <guid isPermaLink="true">http://timusg.com/blog/2013/11/07/code-test-and-automate-infrastructure/</guid>
+        <link>http://www.timusg.com//blog/2013/11/07/code-test-and-automate-infrastructure/</link>
+        <guid isPermaLink="true">http://www.timusg.com//blog/2013/11/07/code-test-and-automate-infrastructure/</guid>
         
         
       </item>
     
       <item>
         <title>Hoppr Platform in Last 10 Months</title>
-        <description>&lt;h2 id=&quot;hoppr-platform-now&quot;&gt;Hoppr Platform Now&lt;/h2&gt;
-
-&lt;p&gt;with 7.6 m users hoppr platform is now handling around 600k checkins and 3m+ events per day.&lt;/p&gt;
+        <description>&lt;p&gt;with 7.6 m users hoppr platform is now handling around 600k checkins and 3m+ events per day.&lt;/p&gt;
 
 &lt;p&gt;underline is a heavily distributed architecture spread across three data centers and aws vpc.
 it support zero downtime deployment and minimalistic service availability even in case of wan link failure.&lt;/p&gt;
@@ -616,8 +612,8 @@ slave even over 2 vpn link separated datacenters&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Sat, 27 Apr 2013 20:45:00 +0530</pubDate>
-        <link>http://timusg.com/2013/04/27/hoppr-platform-in-last-10-months.html</link>
-        <guid isPermaLink="true">http://timusg.com/2013/04/27/hoppr-platform-in-last-10-months.html</guid>
+        <link>http://www.timusg.com//2013/04/27/hoppr-platform-in-last-10-months.html</link>
+        <guid isPermaLink="true">http://www.timusg.com//2013/04/27/hoppr-platform-in-last-10-months.html</guid>
         
         
       </item>

@@ -8,8 +8,6 @@ keywords: "hoppr,hoppr architecture, hoppr checkins , ddd , cqrs, Hoppr,Y2CF Dig
 categories:
 ---
 
-##Hoppr Platform Now##
-
 with 7.6 m users hoppr platform is now handling around 600k checkins and 3m+ events per day.
 
 underline is a heavily distributed architecture spread across three data centers and aws vpc.

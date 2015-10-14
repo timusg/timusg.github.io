@@ -6,10 +6,9 @@ comments: true
 categories: [devops,tdd]
 permalink: /blog/2013/10/15/testing-cookbook-with-docker-and-test-kitchen/
 ---
-
-[Test Kitchen](https://github.com/opscode/test-kitchen) is a framework for isolated integration testing of chef
+Test Kitchen is a framework for isolated integration testing of chef
 recipes.
- 
+
 For testing a recipe it spawn a vm, execute tests and then destroys it.
 For local cookbook development and manual testing of changes
 [vagarnt](http://www.vagrantup.com/) is definitely the first choice,
@@ -19,13 +18,13 @@ optimisation.
 
 
 ## Optimisation
-Containers like openvz and lxc are faster to launch and are very lightweight as compared to virtual box and other VM based backends. 
+Containers like openvz and lxc are faster to launch and are very lightweight as compared to virtual box and other VM based backends.
 
 As compared to open vz, lxc is available on the mainstream linux kernel but managing lxc container with scripts
-is not an easy task, there are two lxc baced framework available, [vagrant lxc](https://github.com/fgrehm/vagrant-lxc)(vagrant lxc provider) and [docker](https://www.docker.io/) (package and run application as container) which provides 
+is not an easy task, there are two lxc baced framework available, [vagrant lxc](https://github.com/fgrehm/vagrant-lxc)(vagrant lxc provider) and [docker](https://www.docker.io/) (package and run application as container) which provides
 good abstraction layer over lxc.
 
-Test kitchen has a architecture for pluggable virualization backend and it support vagrant, ec2 and recently
+ [Test Kitchen](https://github.com/opscode/test-kitchen) has a architecture for pluggable virualization backend and it support vagrant, ec2 and recently
 with [kitchen-docker](https://github.com/portertech/kitchen-docker) plugin, docker can also used as driver.
 
 <!--more-->

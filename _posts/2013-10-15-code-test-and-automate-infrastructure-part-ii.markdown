@@ -1,18 +1,16 @@
 ---
 layout: post
-title: "code test and automate infrastructure - part II"
+title: "Code test and automate infrastructure - part II"
 date: 2013-10-15 18:54
 comments: true
-categories: 
+categories:
 permalink: /blog/2013/12/09/code-test-and-automate-infrastructure-part-ii/
 ---
 
 
-## Part Two  - Testing
+Code should evolve with tests and CI is vital part of it specially multiple developers working in same code base.
 
-Code evolve with tests and CI is vital part of it if multiple developers working in same code base,
-
-As in first part I mentioned to use one repo for each project, we can use execute tests in ci for every commit and
+As in the first part I mentioned to use one repo for each project, we can use execute tests in ci for every commit and
 generate artifacts which are cookbook and environment.
 
 Recent version of chef spec is really good for unit tests and test
