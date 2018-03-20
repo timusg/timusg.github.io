@@ -28,7 +28,7 @@ twitter_handle: '@timusg'
 analytics :
   provider : google
   google :
-      tracking_id : 'UA-39717062-1'
+    tracking_id : 'UA-39717062-1'
 
 # Build settings
 markdown: kramdown
